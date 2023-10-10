@@ -2,7 +2,7 @@ const router = require("express").Router();
 const User = require("../models/user");
 
 const { createNewUser, authenticateUser } = require("../controllers/users")
-
+const auth = require("../middlewares/auth")
 // Insert one
 router.post("/", async (req, res, next) => {
  try {
@@ -23,7 +23,6 @@ router.post("/", async (req, res, next) => {
         res.status(200).json(newUser)
     }
  } catch (error) {
-
     res.status(400).send(error.message)
  }
 });
@@ -48,6 +47,12 @@ router.post("/signin",async (req,res)=>{
         res.status(400).send(error.message)
     }
 
+});
+
+// test route 
+
+router.get("/private_data",auth,(req,res)=>{
+    res.status(200).send("Your are in territory of "+req.currentUser.email)
 })
 
 module.exports = router;

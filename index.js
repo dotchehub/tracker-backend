@@ -4,6 +4,9 @@ const cors = require('cors')
 
 const middlewares = require('./utils/middlewares')
 
+const errorHandler = require("./middlewares/error")
+const logger = require('./middlewares/logger')
+
 const notesRouter = require('./routes/notes')
 const usersRouter = require('./routes/users')
 
@@ -18,14 +21,14 @@ const app = express()
 // Init server
 app.use(cors())
 app.use(express.json())
-app.use(middlewares.logger)
+app.use(logger)
 
 app.use('/api/notes',notesRouter)
 app.use('/users',usersRouter)
 
 
 
-app.use(middlewares.errorHandler)
+app.use(errorHandler)
 
 // Start server
 app.listen(PORT, () => {
