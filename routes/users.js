@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/user");
 
-const { createNewUser } = require("../controllers/users")
+const { createNewUser, authenticateUser } = require("../controllers/users")
 
 // Insert one
 router.post("/", async (req, res, next) => {
@@ -23,9 +23,31 @@ router.post("/", async (req, res, next) => {
         res.status(200).json(newUser)
     }
  } catch (error) {
-    console.log("Un promeJJJJJJJKK")
+
     res.status(400).send(error.message)
  }
 });
+
+// Signin
+
+router.post("/signin",async (req,res)=>{
+    try {
+        let { email, password} = req.body;
+        email = email.trim();
+        password = password.trim();
+
+        if(!(email && password)){
+            throw Error("Empty credentials supplied!");
+        }
+
+        const authenticatedUser = await authenticateUser({email,password})
+
+        res.status(200).json(authenticatedUser)
+        
+    } catch (error) {
+        res.status(400).send(error.message)
+    }
+
+})
 
 module.exports = router;
