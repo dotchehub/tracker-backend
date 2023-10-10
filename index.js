@@ -1,23 +1,33 @@
-const { response } = require("express");
-const express = require("express");
-const app = express();
+require("./config/db")
+const express = require('express')
+const cors = require('cors')
 
-app.get('/',(request,response)=>{
-    response.send("<h1>Hello world </h1>")
-})
+const middlewares = require('./utils/middlewares')
 
-app.get("/api/notes/:id", (request, response) => {
-  const id = Number(request.params.id);
-  const note = notes.find((note) => note.id === id);
-  if (note) {
-    response.json(note);
-  } else {
-    response.status(404).end();
-  }
-});
+const notesRouter = require('./routes/notes')
+const usersRouter = require('./routes/users')
 
-const PORT = 3001;
+const {PORT} = process.env;
 
+
+// Connect to database
+
+// Create server
+const app = express()
+
+// Init server
+app.use(cors())
+app.use(express.json())
+app.use(middlewares.logger)
+
+app.use('/api/notes',notesRouter)
+app.use('/users',usersRouter)
+
+
+
+app.use(middlewares.errorHandler)
+
+// Start server
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+  console.log(`Server running on port ${PORT}`)
+})
