@@ -26,14 +26,15 @@ router.get("/:id", async (req,res)=>{
     }
    
 })
+
 // Find all by user id
 router.get("/user/:id", async (req, res, next) => {
     try {
+        console.log("USER WANTS Workouts")
         let userId = req.params.id;
         if(!userId){
             throw Error("Missing user id")
         }else{
-            
             const workouts = await getUserWorkouts(userId);
             res.status(200).json(workouts)
         }

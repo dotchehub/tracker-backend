@@ -54,8 +54,6 @@ const authenticateUser = async (data)=>{
         fetchedUser.token = token;
         return fetchedUser;
 
-
-
     } catch (error) {
         throw error;
     }
