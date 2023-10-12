@@ -2,13 +2,12 @@ require("./config/db")
 const express = require('express')
 const cors = require('cors')
 
-const middlewares = require('./utils/middlewares')
-
 const errorHandler = require("./middlewares/error")
 const logger = require('./middlewares/logger')
 
 const notesRouter = require('./routes/notes')
 const usersRouter = require('./routes/users')
+const workoutRouter = require('./routes/workout')
 
 const {PORT} = process.env;
 
@@ -25,6 +24,7 @@ app.use(logger)
 
 app.use('/api/notes',notesRouter)
 app.use('/users',usersRouter)
+app.use('/workout',workoutRouter)
 
 
 
