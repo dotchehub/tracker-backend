@@ -9,6 +9,7 @@ const notesRouter = require('./routes/notes')
 const usersRouter = require('./routes/users')
 const workoutRouter = require('./routes/workout')
 const exerciceRouter = require('./routes/exercices')
+const serieRouter = require('./routes/series')
 
 const {PORT} = process.env;
 
@@ -27,6 +28,7 @@ app.use('/api/notes',notesRouter)
 app.use('/users',usersRouter)
 app.use('/workouts',workoutRouter)
 app.use('/exercices',exerciceRouter)
+app.use('/series',serieRouter)
 
 
 
