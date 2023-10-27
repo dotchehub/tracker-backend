@@ -10,6 +10,7 @@ const usersRouter = require('./routes/users')
 const workoutRouter = require('./routes/workout')
 const exerciceRouter = require('./routes/exercices')
 const serieRouter = require('./routes/series')
+const trainingExerciceRouter = require('./routes/trainingExercices')
 
 const {PORT} = process.env;
 
@@ -29,6 +30,7 @@ app.use('/users',usersRouter)
 app.use('/workouts',workoutRouter)
 app.use('/exercices',exerciceRouter)
 app.use('/series',serieRouter)
+app.use('/training/exercice',trainingExerciceRouter)
 
 
 
