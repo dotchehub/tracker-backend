@@ -30,7 +30,7 @@ router.get("/:id", async (req,res)=>{
 // Find all by user id
 router.get("/user/:id", async (req, res, next) => {
     try {
-        console.log("USER WANTS Workouts")
+        
         let userId = req.params.id;
         if(!userId){
             throw Error("Missing user id")
@@ -62,6 +62,7 @@ router.post("/", async (req,res)=>{
         }
 
     } catch (error) {
+        console.log(error);
         res.status(400).send(error.message)
     }
    

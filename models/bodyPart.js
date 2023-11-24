@@ -3,15 +3,11 @@ const mongoose = require('mongoose')
 
 
 // Define Schema
-const SerieSchema = new mongoose.Schema({
-    orderNumber: Number,
-    weight: Number,
-    repetition: Number,
-    date:Date,
-    workoutExercice: String
+const BodyPartSchema = new mongoose.Schema({
+    name: String,
 })
 
-SerieSchema.set('toJSON', {
+BodyPartSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
@@ -21,4 +17,4 @@ SerieSchema.set('toJSON', {
 
 
 // Export model
-module.exports = mongoose.model('Serie', SerieSchema )
+module.exports = mongoose.model('BodyPart', BodyPartSchema)

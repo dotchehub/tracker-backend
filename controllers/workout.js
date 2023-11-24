@@ -37,8 +37,8 @@ const getOne = async (id) =>{
 
 const getUserWorkouts = async(userId) =>{
     try {
-       const workouts =  Workout.find({userId: userId})
-       console.log(workouts)
+       const workouts = await Workout.find({userId: userId})
+       
        return workouts;
     } catch (error) {
         throw error

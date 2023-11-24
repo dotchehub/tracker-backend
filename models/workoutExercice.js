@@ -3,15 +3,13 @@ const mongoose = require('mongoose')
 
 
 // Define Schema
-const trainingExerciceSchema = new mongoose.Schema({
+const workoutExerciceSchema = new mongoose.Schema({
     orderNumber: Number,
-    idTraining: String,
-    idExercice: String,
-  
-
+    workoutId: String,
+    exerciceId: String,
 })
 
-trainingExerciceSchema.set('toJSON', {
+workoutExerciceSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
@@ -21,4 +19,4 @@ trainingExerciceSchema.set('toJSON', {
 
 
 // Export model
-module.exports = mongoose.model('TrainingExercice', trainingExerciceSchema)
+module.exports = mongoose.model('workoutExercice', workoutExerciceSchema)

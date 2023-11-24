@@ -4,7 +4,14 @@ const mongoose = require('mongoose')
 
 // Define Schema
 const ExerciceSchema = new mongoose.Schema({
-    name: String,
+  bodyPart:String,
+  equipment:String,
+  gifUrl:String,
+  exerciceId:String,
+  name:String,
+  target:String,
+  secondaryMuscles:Array,
+  instructions:Array
 })
 
 ExerciceSchema.set('toJSON', {
